@@ -1,13 +1,16 @@
 package com.compass.workshopmongo_final.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.compass.worworkshopmongo_final.dto.AutorDTO;
+import com.compass.worworkshopmongo_final.dto.ComentarioDTO;
 
 @Document
 public class Post implements Serializable{
@@ -19,6 +22,8 @@ public class Post implements Serializable{
 	private String titulo;
 	private String body;
 	private AutorDTO autor;
+	
+	private List <ComentarioDTO> cometario = new ArrayList<>();
 	
 	public Post () {
 		
@@ -71,8 +76,15 @@ public class Post implements Serializable{
 
 	public void setAutor(AutorDTO autor) {
 		this.autor = autor;
+	}	
+
+	public List<ComentarioDTO> getCometario() {
+		return cometario;
 	}
-	
+
+	public void setCometario(List<ComentarioDTO> cometario) {
+		this.cometario = cometario;
+	}
 
 	@Override
 	public int hashCode() {
