@@ -1,5 +1,6 @@
 package com.compass.worworkshopmongo_final.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -16,5 +17,7 @@ public interface PostRepository extends MongoRepository<Post, String> {
 	
 	List<Post> findByTituloContainingIgnoreCase(String text);
 	
+	@Query("{ $and: [ { data: {$gte: ?1} }, { data: { $lte: ?2 } }, { $or: [ {'titulo': { $regex: ?0, $options: 'i' } }, {'body': { $regex: ?0, $options: 'i' } }, {'comentario.text': { $regex: ?0, $options: 'i' }} ] } ] }")
+	List<Post> fullSearch(String text, Date minDate, Date maxdate);
 	
 }
