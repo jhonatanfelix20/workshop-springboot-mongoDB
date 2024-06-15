@@ -23,7 +23,7 @@ public class PostService {
 	}
 	
 	public List<Post> findByTitulo(String text){
-		return repo.findByTituloContainingIgnoreCase(text);
+		return repo.tituloPesquisado(text);
 	}
 
 }
